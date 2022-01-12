@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Inventory API",
+    "description": "Shopify Backend Developer Intern Challenge",
+    "contact": {
+      "name": "Charles Wong",
+      "email": "charleswonghm@gmail.com"
+    },
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/item": {
+      "summary": "Performs basic operations on individual items",
+      "description": "Allows the client to create, delete, or edit individual inventory items",
+      "post": {
+        "summary": "Create a new inventory item",
+        "requestBody": {
+          "description": "The initial parameters to create the inventory item with",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Response containing successfully created inventory object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Item": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "name": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}
